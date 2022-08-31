@@ -83,24 +83,3 @@ show_vmemory(date_vmemory)
 date_disks = inf_disks()
 show_disks(date_disks)
 show_processes()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
