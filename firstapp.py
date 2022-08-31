@@ -56,7 +56,7 @@ def show_vmemory(infobox_vmemory):
     'Total:\t {} bytes\n'
     'Used: \t {} bytes\n'
     'Free: \t {} bytes\n'
-    .format(date_vmemory[0],date_vmemory[1],date_vmemory[1]))
+    .format(date_vmemory[0],date_vmemory[1],date_vmemory[2]))
   
 
 def show_disks(infobox_disks):
@@ -66,7 +66,7 @@ def show_disks(infobox_disks):
     'Total:\t {} bytes\n'
     'Used: \t {} bytes\n'
     'Free: \t {} bytes\n'
-    .format(date_disks[0],date_disks[1],date_disks[1]))
+    .format(date_disks[0],date_disks[1],date_disks[2]))
 
 def show_processes():
     print('Processes:\n')
