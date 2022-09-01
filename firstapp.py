@@ -1,3 +1,4 @@
+from re import U
 import psutil
 
 
@@ -37,7 +38,7 @@ def inf_disks():
     return infobox_disks
     
 
-def show_cpu(infobox_cpu):
+def show_inf(infobox_cpu,infobox_vmemory, infobox_disks):
     date_cpu = list(infobox_cpu.values())
     print(
     'CPU: \n'
@@ -46,20 +47,15 @@ def show_cpu(infobox_cpu):
     'CPU frequency MIN:\t {} MHz\n'
     'CPU frequency MAX:\t {} MHz\n'
     'CPU usage:        \t {} %\n'
-
     .format(date_cpu[0], date_cpu[1],date_cpu[2], date_cpu[3],date_cpu[4]))
-  
 
-def show_vmemory(infobox_vmemory):
     date_vmemory = list(infobox_vmemory.values())   
     print('Virtual memory: \n'
     'Total:\t {} bytes\n'
     'Used: \t {} bytes\n'
     'Free: \t {} bytes\n'
     .format(date_vmemory[0],date_vmemory[1],date_vmemory[2]))
-  
 
-def show_disks(infobox_disks):
     date_disks = list(infobox_disks.values())
     print(
     'Disks memory:\n'
@@ -67,19 +63,21 @@ def show_disks(infobox_disks):
     'Used: \t {} bytes\n'
     'Free: \t {} bytes\n'
     .format(date_disks[0],date_disks[1],date_disks[2]))
+  
+
+
 
 def show_processes():
     print('Processes:\n')
     for proc in psutil.process_iter(['pid','name','username']):
-        print(proc.info)
-
-
-
+        print('ID:', proc.info['pid'], ' ' ,'Name:', proc.info['name'],'\t','User:', proc.info['username'])
 
 date_cpu = inf_cpu()
-show_cpu(date_cpu)
 date_vmemory = inf_vmemory()
-show_vmemory(date_vmemory)
 date_disks = inf_disks()
-show_disks(date_disks)
+show_inf(date_cpu,date_vmemory,date_disks)
 show_processes()
+
+
+
+
