@@ -1,9 +1,23 @@
 from re import U
 import psutil
+import json
 
+def wt_json_dec(func):
+    def executer():
+        res = func()
+        json.dump(res, open(func.__name__ + '.json', 'a'), indent = 0)
+        return res
+    return executer
 
+def wt2_json_dec(func):
+    def executer():
+        res = func()
+        json.dump(res, open('pc_status.json', 'a'), indent = 0)
+        return res
+    return executer
    
-
+@wt2_json_dec
+@wt_json_dec
 def inf_cpu():
     infobox_cpu = {} 
     infobox_cpu.update(
@@ -17,6 +31,8 @@ def inf_cpu():
     infobox_cpu.update(cpu_usage = psutil.cpu_percent(interval=1))
     return infobox_cpu
 
+@wt2_json_dec
+@wt_json_dec
 def inf_vmemory():
     infobox_vmemory = {}
     info_vmemory = psutil.virtual_memory()
@@ -27,6 +43,9 @@ def inf_vmemory():
     )
     return infobox_vmemory
 
+
+@wt2_json_dec
+@wt_json_dec
 def inf_disks():
     infobox_disks = {}
     inf_disks = psutil.disk_usage('/')
